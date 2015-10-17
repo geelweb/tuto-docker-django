@@ -1,0 +1,14 @@
+db:
+    image: geelweb/postgis:9.3
+    environment:
+        - POSTGRES_USER=plop
+        - POSTGRES_PASSWORD=secret
+web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+        - .:/app
+    ports:
+        - "8000:8000"
+    links:
+        - db
